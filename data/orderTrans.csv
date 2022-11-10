@@ -1,0 +1,9 @@
+customer_name,customer_address,customer_phone,couriers,status
+Nishu,Address in Manchester,07728909341,John,PREPARING
+Megha,address 1 for Megha,07711909342,Herny,processing
+Zach,address near the city center,07743288959,Polly,processing
+Rachel,Bolton of UK,07735428413,Polly,OUT-FOR-DELIVERY
+Tom,Not specified,07757640635,John,processing
+Apple Jefferson,"Traford Center, Manchester",07729764265,Claire,DELIVERED
+Chan Tai Man,North of Manchester,Yorkshire South,Polly,PROCESSING
+Alton Disney,Yorkshire North,07743288956,Herny,PREPARING
