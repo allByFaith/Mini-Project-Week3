@@ -148,8 +148,8 @@ def updateOrder(inAction):
             count += 1
         # Finished print out the list
 
-        # Get index for delete
-        orderIndex = int(input("Enter the index that want to process : "))
+        # Get index for deletion or processing
+        orderIndex = int(input("Enter the index that wants to be processed : "))
         if (inAction == 'd'): # handle for delete order
             currentOrderList.pop(orderIndex)
             print(f"Record with index[{orderIndex}] to delete")    
@@ -173,27 +173,19 @@ def updateOrder(inAction):
             currentOrderList[orderIndex][inStatus] = selectSTATUS  # Update the desired status 
         elif(inAction == 'su'): # handle for STRETCH update order
             inStatus = 'status'
+
+            # Extract the Key and Value from the user's selected dictionary, then
+            # Loop through the properties
             localCount = 0
-            for key, item in itemList.items():  # Iterate through the selected dictionary
-                print(f'[{localCount}]-->{key}:{item}')  # Create a dynamic menu for selection
-                localCount += 1
-            getPropertyIndex = input("Enter the property index to update the specific preperty : ")
-            if (getPropertyIndex == ''):
-                print("Update Aborted")
-            else: # the input index match!!!      (getPropertyIndex == itemList[key]):
-                # Debug statement : print("Input index -> " + getPropertyIndex)
-                # Reset localCount to zero
-                localCount = 0
-                for key, item in itemList.items():  # Iterate through the selected dictionary
-                    ## Debug statement : print(f'[{localCount}]-->{key}:{item}')
-                    if (localCount == int(getPropertyIndex)):
-                        # Debug statement : print(f'Inside if loop : [{localCount}]-->{key}:{item}')  # Create a dynamic menu for selection
-                        newPropertyValue = input(f"Please enter the new value for {key} to be updated :")
-                        # update the property 'currentOrderList[orderIndex][key]' for user input value
-                        currentOrderList[orderIndex][key] = newPropertyValue
-                        break
-                    else: 
-                        localCount += 1 # get next property
+            for key, item in currentOrderList[orderIndex].items():  # Iterate through the selected dictionary
+                print(f'[{localCount}]-->{key}:{item}')  # Create a dynamic menu for selection (with index)
+                getPropertyToUpdate = input(f"Enter the property value for {key} to : ")
+                if (getPropertyToUpdate == ''):
+                    print("Passed the update for this property!")
+                else: # the input index match!!!      (getPropertyIndex == itemList[key]):
+                    currentOrderList[orderIndex][key] = getPropertyToUpdate # Update the input property
+                localCount += 1  # move next property
+
         # Write/Update back the results to csv file
         orderFile = "../data/orderTrans.csv"
         with open(orderFile, 'w') as csvFile:
